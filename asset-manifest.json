@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/s3-radio-collection/static/css/main.fd94597b.css",
+    "main.js": "/s3-radio-collection/static/js/main.b29a8aa3.js",
+    "index.html": "/s3-radio-collection/index.html",
+    "main.fd94597b.css.map": "/s3-radio-collection/static/css/main.fd94597b.css.map",
+    "main.b29a8aa3.js.map": "/s3-radio-collection/static/js/main.b29a8aa3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fd94597b.css",
+    "static/js/main.b29a8aa3.js"
+  ]
+}
