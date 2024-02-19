@@ -1,3 +1,12 @@
+import Browser from './Browser'
+
 export default function Component() {
-  return <h1>Hello World</h1>
+  const setCurrFile = (curr: string) => {
+    console.log(`Opening: ${JSON.stringify(curr)}`)
+  }
+  return (
+    <div style={{ height: 300 }}>
+      <Browser setCurrFile={setCurrFile} />
+    </div>
+  )
 }
