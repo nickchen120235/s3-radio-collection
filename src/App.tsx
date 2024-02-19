@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
+import AudioPlayer from 'react-h5-audio-player'
 import Browser from './Browser'
 import Login from './Login'
 import { enqueueSnackbar } from 'notistack'
 
 export default function Component() {
-  const setCurrFile = (curr: string) => {
-    console.log(`Opening: ${JSON.stringify(curr)}`)
-  }
+  const [currFile, setCurrFile] = useState<string>('')
+  const [currFolder, setCurrFolder] = useState('Radio')
   const [login, setLogin] = useState(false)
   useEffect(() => {
     const token = sessionStorage.getItem('token')
@@ -64,6 +64,7 @@ export default function Component() {
       </Toolbar>
     </AppBar>
     <Toolbar />
-    <Browser setCurrFile={setCurrFile} setLogin={setLogin} />
+    <Browser setCurrFile={setCurrFile} setLogin={setLogin} setCurrRadioFolder={setCurrFolder} />
+    {currFile && <AudioPlayer src={`https://s3.tebi.io/nickchen120235-radio/${encodeURIComponent(currFolder)}/${encodeURIComponent(currFile)}`} />}
   </>)
 }

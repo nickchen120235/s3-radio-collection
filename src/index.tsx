@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { setChonkyDefaults } from 'chonky'
 import { ChonkyIconFA } from 'chonky-icon-fontawesome'
 import { SnackbarProvider } from 'notistack'
+import 'react-h5-audio-player/lib/styles.css'
 
 setChonkyDefaults({ iconComponent: ChonkyIconFA })
 const root = ReactDOM.createRoot(

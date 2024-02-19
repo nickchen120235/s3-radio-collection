@@ -9,14 +9,16 @@ import { enqueueSnackbar } from 'notistack'
 
 type BackendData = { [key: string]: string[] }
 
-const useFileActionHandler = (setCurrFolder: (curr: string) => void, setCurrFile: (curr: string) => void) => {
+const useFileActionHandler = (setCurrFolder: (curr: string) => void, setCurrFile: (curr: string) => void, setCurrRadioFolder: (curr: string) => void) => {
   return useCallback((data: ChonkyFileActionData) => {
     if (data.id === ChonkyActions.OpenFiles.id) {
       const { targetFile, files } = data.payload
       const file = targetFile ?? files[0]
       if (file) {
         if (file.isDir) {
+          setCurrFile('')
           setCurrFolder(file.id)
+          setCurrRadioFolder(file.id)
           return
         }
         else {
@@ -51,14 +53,15 @@ const useFolderChain = (currFolder: string, data: BackendData): FileArray => {
 interface Props {
   setCurrFile: (curr: string) => void,
   setLogin: (state: boolean) => void,
+  setCurrRadioFolder: (curr: string) => void,
 }
 export default function Component(props: Props) {
-  const { setCurrFile, setLogin } = props
+  const { setCurrFile, setLogin, setCurrRadioFolder } = props
   const [data, setData] = useState<BackendData>({})
   const [currFolder, setCurrFolder] = useState('Radio')
   const files = useFiles(currFolder, data)
   const folderChain = useFolderChain(currFolder, data)
-  const handleFileAction = useFileActionHandler(setCurrFolder, setCurrFile)
+  const handleFileAction = useFileActionHandler(setCurrFolder, setCurrFile, setCurrRadioFolder)
   useEffect(() => {
     async function fetchFiles(): Promise<void> {
       const token = sessionStorage.getItem('token')
