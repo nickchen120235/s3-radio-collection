@@ -55,7 +55,7 @@ export default function Component() {
 
   if (!login)
     return <Login setLogin={setLogin} />
-  return (<>
+  return (<div style={{height: '100vh'}}>
     <AppBar elevation={0} color='inherit'>
       <Toolbar>
         <Typography variant='h6' component='div'>
@@ -64,7 +64,9 @@ export default function Component() {
       </Toolbar>
     </AppBar>
     <Toolbar />
-    <Browser setCurrFile={setCurrFile} setLogin={setLogin} setCurrRadioFolder={setCurrFolder} />
+    <div style={{ height: `calc(100% - 64px${currFile && ' - 88px'})` }}>
+      <Browser setCurrFile={setCurrFile} setLogin={setLogin} setCurrRadioFolder={setCurrFolder} />
+    </div>
     {currFile && <AudioPlayer src={`https://s3.tebi.io/nickchen120235-radio/${encodeURIComponent(currFolder)}/${encodeURIComponent(currFile)}`} />}
-  </>)
+  </div>)
 }
