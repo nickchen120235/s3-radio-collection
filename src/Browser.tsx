@@ -5,6 +5,7 @@ import {
   ChonkyFileActionData,
   ChonkyActions,
 } from 'chonky'
+import { enqueueSnackbar } from 'notistack'
 
 type BackendData = { [key: string]: string[] }
 
@@ -49,9 +50,10 @@ const useFolderChain = (currFolder: string, data: BackendData): FileArray => {
 
 interface Props {
   setCurrFile: (curr: string) => void,
+  setLogin: (state: boolean) => void,
 }
 export default function Component(props: Props) {
-  const { setCurrFile } = props
+  const { setCurrFile, setLogin } = props
   const [data, setData] = useState<BackendData>({})
   const [currFolder, setCurrFolder] = useState('Radio')
   const files = useFiles(currFolder, data)
@@ -59,9 +61,38 @@ export default function Component(props: Props) {
   const handleFileAction = useFileActionHandler(setCurrFolder, setCurrFile)
   useEffect(() => {
     async function fetchFiles(): Promise<void> {
-      // TODO: fetch files from server
-      const data = await Promise.resolve<BackendData>({})
-      setData(data)
+      const token = sessionStorage.getItem('token')
+      if (token === null) {
+        enqueueSnackbar('Login required', { variant: 'error' })
+        setLogin(false)
+        return
+      }
+      try {
+        const res = await fetch('https://api.radio.nickchen120235.dns-cloud.net/', {
+          headers: {
+            'Authorization': token
+          }
+        })
+        if (res.ok) {
+          const data = await res.json() as BackendData
+          setData(data)
+        }
+        else {
+          if (res.status === 401) {
+            const data = await res.json() as { error: string }
+            enqueueSnackbar(data.error, { variant: 'error' })
+            setLogin(false)
+          }
+          else {
+            enqueueSnackbar(`Backend returned ${res.status}`, { variant: 'error' })
+            setLogin(false)
+          }
+        }
+      }
+      catch (e) {
+        console.error(e)
+        enqueueSnackbar('Failed to fetch files', { variant: 'error' })
+      }
     }
     fetchFiles()
   }, [])

@@ -64,6 +64,6 @@ export default function Component() {
       </Toolbar>
     </AppBar>
     <Toolbar />
-    <Browser setCurrFile={setCurrFile} />
+    <Browser setCurrFile={setCurrFile} setLogin={setLogin} />
   </>)
 }
