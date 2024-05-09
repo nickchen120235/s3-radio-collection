@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/s3-radio-collection/static/css/main.fd94597b.css",
-    "main.js": "/s3-radio-collection/static/js/main.c0472090.js",
-    "index.html": "/s3-radio-collection/index.html",
-    "main.fd94597b.css.map": "/s3-radio-collection/static/css/main.fd94597b.css.map",
-    "main.c0472090.js.map": "/s3-radio-collection/static/js/main.c0472090.js.map"
+    "main.css": "/static/css/main.fd94597b.css",
+    "main.js": "/static/js/main.c0472090.js",
+    "index.html": "/index.html",
+    "main.fd94597b.css.map": "/static/css/main.fd94597b.css.map",
+    "main.c0472090.js.map": "/static/js/main.c0472090.js.map"
   },
   "entrypoints": [
     "static/css/main.fd94597b.css",
