@@ -31,7 +31,7 @@ export default function Component(props: Props) {
   const handleSubmit = (password: string) => async () => {
     setLoading(true)
     try {
-      const res = await fetch('https://api.radio.nickchen120235.dns-cloud.net/login', {
+      const res = await fetch('https://api.radio.nickchen120235.dev/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

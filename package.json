@@ -17,6 +17,7 @@
     "@types/react-dom": "^18.0.0",
     "chonky": "^2.3.2",
     "chonky-icon-fontawesome": "^2.3.2",
+    "gh-pages": "^6.1.1",
     "notistack": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -28,7 +29,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -47,5 +50,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "homepage": "https://nickchen120235.github.io/s3-radio-collection"
 }

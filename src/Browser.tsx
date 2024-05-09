@@ -71,7 +71,7 @@ export default function Component(props: Props) {
         return
       }
       try {
-        const res = await fetch('https://api.radio.nickchen120235.dns-cloud.net/', {
+        const res = await fetch('https://api.radio.nickchen120235.dev/', {
           headers: {
             'Authorization': token
           }
